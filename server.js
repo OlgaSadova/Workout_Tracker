@@ -40,13 +40,9 @@
           });
   });
 
-  // display all previous workouts
-  // with their exercises
+
   app.get("/previous", (req, res) => {
-      // sorts all the workouts by their id i.e.
-      // the time created from the most recent
-      // to the least and returns all workouts
-      // but the most recent
+
       db.Workout.find().sort({ _id: -1 }).skip(1)
           .populate("exercises")
           .then(dbWorkout => {
@@ -57,14 +53,9 @@
           });
   })
 
-  // give the most recent workout with
-  // their excercises
+
   app.get("/recent", (req, res) => {
-      // sorts all the workouts by their id i.e.
-      // the time created from the most recent
-      // to the least and returns the first
-      // document which will be the most
-      // recent workout created
+
       db.Workout.findOne().sort({ _id: -1 })
           .populate("exercises")
           .then(dbWorkout => {
